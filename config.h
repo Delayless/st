@@ -198,9 +198,10 @@ static Shortcut shortcuts[] = {
 	/* { Mod1Mask|ShiftMask,	XK_Y,           copyurl,        {.i =  0} }, */
 	//{ MODKEY,				XK_o,			opencopied,		{.v = "google-chrome-stable"} },
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
-	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
-	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
-	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
+	/* The series of printer functions are used to print the terminal to iofile by specifing the argument `st -o /temp/iofile.log` */
+	/* { ControlMask,          XK_Print,       toggleprinter,  {.i =  0} }, */
+	/* { ShiftMask,            XK_Print,       printscreen,    {.i =  0} }, */
+	/* { XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} }, */
 	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
 	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
