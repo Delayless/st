@@ -19,7 +19,7 @@ static int borderpx = 1;
 static char *shell = "/bin/sh";
 char *utmp = NULL;
 /* scroll program: to enable use a string like "scroll" */
-char *scroll = NULL;
+char *scroll = "scroll";
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 
 /* identification sequence returned in DA and DECID */
@@ -221,10 +221,6 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
-	{ Mod1Mask,				XK_k,			kscrollup,      {.i =  1} },
-	{ Mod1Mask,				XK_j,			kscrolldown,    {.i =  1} },
-	{ Mod1Mask|ShiftMask,	XK_K,			kscrollup,      {.i = -1} },
-	{ Mod1Mask|ShiftMask,	XK_J,			kscrolldown,    {.i = -1} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ MODKEY|ShiftMask,		XK_Return,      newterm,        {.i =  0} },
