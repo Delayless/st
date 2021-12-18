@@ -194,21 +194,19 @@ static MouseShortcut mshortcuts[] = {
 #define TERMMOD (ControlMask|ShiftMask)
 
 // from @LukeSmithxyz
-static char *openurlcmd[] = { "/bin/sh", "-c",
-    "sed 's/.*│//g' | tr -d '\n' | grep -aEo '(((http|https)://|www\\.)[a-zA-Z0-9.]*[:]?[a-zA-Z0-9./&%?#=_-]*)|((magnet:\\?xt=urn:btih:)[a-zA-Z0-9]*)'| uniq | sed 's/^www./http:\\/\\/www\\./g' | dmenu -i -p 'Follow which url?' -l 10 | xargs -r xdg-open",
-    "externalpipe", NULL };
-static char *copyurlcmd[] = { "/bin/sh", "-c",
-    "sed 's/.*│//g' | tr -d '\n' | grep -aEo '(((http|https)://|www\\.)[a-zA-Z0-9.]*[:]?[a-zA-Z0-9./&%?#=_-]*)|((magnet:\\?xt=urn:btih:)[a-zA-Z0-9]*)' | uniq | sed 's/^www./http:\\/\\/www\\./g' | dmenu -i -p 'Copy which url?' -l 10 | tr -d '\n' | xclip -selection clipboard",
-    "externalpipe", NULL };
+static char *openurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -o", "externalpipe", NULL };
+static char *copyurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -c", "externalpipe", NULL };
 static char *copyoutput[] = { "/bin/sh", "-c", "st-copyout", "externalpipe", NULL };
+
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
+	/* requirement: dmenu */
 	{ Mod1Mask,				XK_l,           externalpipe,   {.v = openurlcmd } },
 	{ Mod1Mask,             XK_y,           externalpipe,   {.v = copyurlcmd } },
 	{ Mod1Mask,             XK_o,           externalpipe,   {.v = copyoutput } },
-	/* { Mod1Mask|ShiftMask,	XK_Y,           copyurl,        {.i =  0} }, */
-	//{ MODKEY,				XK_o,			opencopied,		{.v = "google-chrome-stable"} },
+	{ Mod1Mask|ShiftMask,	XK_Y,           copyurl,        {.i =  0} },
+	/* { MODKEY,				XK_o,			opencopied,		{.v = "google-chrome-stable"} }, */
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
 	/* The series of printer functions are used to print the terminal to iofile by specifing the argument `st -o /temp/iofile.log` */
 	/* { ControlMask,          XK_Print,       toggleprinter,  {.i =  0} }, */
@@ -222,8 +220,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ Mod1Mask,				XK_k,			kscrollup,      {.i =  1} },
 	{ Mod1Mask,				XK_j,			kscrolldown,    {.i =  1} },
-	{ Mod1Mask|ShiftMask,	XK_K,			kscrollup,      {.i = -1} },
-	{ Mod1Mask|ShiftMask,	XK_J,			kscrolldown,    {.i = -1} },
+	{ Mod1Mask,				XK_u,			kscrollup,      {.i = -1} },
+	{ Mod1Mask,				XK_d,			kscrolldown,    {.i = -1} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ MODKEY|ShiftMask,		XK_Return,      newterm,        {.i =  0} },
